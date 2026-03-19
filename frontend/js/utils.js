@@ -96,7 +96,10 @@ const Utils = (() => {
 
   // ── API Client ──────────────────────────────────────────────
   const api = (() => {
-    const BASE = 'http://localhost:5000/api';
+    
+    const BASE = window.location.hostname === 'localhost'
+  ? 'http://localhost:5000/api'
+  : '/api';
 
     const token = async () => {
       const auth = window._fb?.auth;

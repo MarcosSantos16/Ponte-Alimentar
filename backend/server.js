@@ -188,6 +188,12 @@ const iniciar = async () => {
   }
 };
 
-iniciar();
+// Em produção (Vercel) exporta o app; localmente inicia o servidor
+if (process.env.NODE_ENV !== 'production') {
+  iniciar();
+} else {
+  connectMongoDB();
+  initFirebase();
+}
 
 module.exports = app; 
