@@ -1,19 +1,26 @@
-# ── Segredos — NUNCA commitar ───────────────────────────────
+# Segredos — NUNCA commitar
 .env
+.env.local
+.env.production
 *.pem
 *.key
 serviceAccountKey.json
 firebase-adminsdk*.json
 
-# ── Node ─────────────────────────────────────────────────────
+# Node
 node_modules/
 npm-debug.log*
 yarn-error.log
 
-# ── Logs ─────────────────────────────────────────────────────
+# Logs
 logs/
 *.log
 
-# ── OS ───────────────────────────────────────────────────────
+
+# OS
 .DS_Store
 Thumbs.db
+
+# Editor
+.vscode/
+.idea/
