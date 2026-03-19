@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: wss: data: blob:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; img-src 'self' data: https: blob:; connect-src 'self' http://localhost:5000 https: wss:;"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title>Ponte Alimentar — Nova Doação</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/nova-doacao.css"/>
+</head>
+<body>
+
+<div class="page-loading" id="pageLoading"><div class="spinner spinner--lg"></div></div>
+
+<!-- Nav injetada pelo init.js -->
+
+<main class="form-page container">
+
+  <!-- Stepper de progresso -->
+  <div class="stepper" id="stepper" role="list">
+    <div class="step-dot active" data-step="1" role="listitem">
+      <div class="step-dot__circle">1</div>
+      <span class="step-dot__label">Informações</span>
+    </div>
+    <div class="step-dot__line"></div>
+    <div class="step-dot" data-step="2" role="listitem">
+      <div class="step-dot__circle">2</div>
+      <span class="step-dot__label">Itens</span>
+    </div>
+    <div class="step-dot__line"></div>
+    <div class="step-dot" data-step="3" role="listitem">
+      <div class="step-dot__circle">3</div>
+      <span class="step-dot__label">Localização</span>
+    </div>
+    <div class="step-dot__line"></div>
+    <div class="step-dot" data-step="4" role="listitem">
+      <div class="step-dot__circle">4</div>
+      <span class="step-dot__label">Revisão</span>
+    </div>
+  </div>
+
+  <div class="form-card card">
+
+    <!-- ══ PASSO 1 — Informações ══════════════════════════ -->
+    <div class="form-step active" id="step1">
+      <h2 class="form-step__title">Informações básicas</h2>
+      <p class="form-step__sub">Conte sobre a doação que você tem disponível.</p>
+
+      <div class="form-group">
+        <label for="titulo">Título da doação *</label>
+        <input class="input" type="text" id="titulo" name="titulo"
+          placeholder="Ex: Marmitas prontas do almoço" minlength="5" maxlength="100" required/>
+        <span class="form-error" id="tituloError"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="tipo">Tipo de alimento *</label>
+        <select class="input" id="tipo" name="tipo" required>
+          <option value="">Selecione o tipo...</option>
+          <option value="refeicao_pronta">🍽️ Refeição pronta</option>
+          <option value="alimento_nao_perecivel">📦 Alimento não perecível</option>
+          <option value="fruta_legume">🥦 Fruta / Legume</option>
+          <option value="padaria">🥖 Padaria / Confeitaria</option>
+          <option value="outro">📋 Outro</option>
+        </select>
+        <span class="form-error" id="tipoError"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="descricao">Descrição *</label>
+        <textarea class="input" id="descricao" name="descricao"
+          placeholder="Descreva os alimentos, condições, como foram preparados..." rows="4"
+          minlength="10" maxlength="1000" required></textarea>
+        <span class="form-error" id="descricaoError"></span>
+        <span class="hint" id="descricaoCount">0/1000 caracteres</span>
+      </div>
+
+      <div class="form-group">
+        <label for="validoAte">Válido até *</label>
+        <input class="input" type="datetime-local" id="validoAte" name="validoAte" required/>
+        <span class="hint">Máximo 7 dias a partir de hoje.</span>
+        <span class="form-error" id="validoAteError"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="observacoes">Observações (opcional)</label>
+        <textarea class="input" id="observacoes" name="observacoes"
+          placeholder="Alergênicos, restrições, condições especiais..."
+          rows="2" maxlength="500"></textarea>
+      </div>
+    </div>
+
+    <!-- ══ PASSO 2 — Itens ════════════════════════════════ -->
+    <div class="form-step hidden" id="step2">
+      <h2 class="form-step__title">Itens da doação</h2>
+      <p class="form-step__sub">Liste os alimentos com quantidade e unidade.</p>
+
+      <div id="itensContainer"></div>
+
+      <button type="button" class="btn btn--outline btn--full" id="btnAddItem">
+        + Adicionar item
+      </button>
+      <span class="form-error" id="itensError"></span>
+    </div>
+
+    <!-- ══ PASSO 3 — Localização ═════════════════════════ -->
+    <div class="form-step hidden" id="step3">
+      <h2 class="form-step__title">Local de retirada</h2>
+      <p class="form-step__sub">Informe onde o receptor deverá buscar a doação.</p>
+
+      <div class="form-group">
+        <label for="locEndereco">Endereço completo *</label>
+        <input class="input" type="text" id="locEndereco" name="endereco"
+          placeholder="Rua, número, bairro" maxlength="200" required/>
+        <span class="form-error" id="locEnderecoError"></span>
+      </div>
+
+      <div class="form-row-3">
+        <div class="form-group" style="flex:2">
+          <label for="locCidade">Cidade *</label>
+          <input class="input" type="text" id="locCidade" name="cidade"
+            placeholder="Recife" maxlength="100" required/>
+          <span class="form-error" id="locCidadeError"></span>
+        </div>
+        <div class="form-group">
+          <label for="locEstado">Estado *</label>
+          <select class="input" id="locEstado" name="estado" required>
+            <option value="">UF</option>
+            <option value="PE">PE</option><option value="SP">SP</option>
+            <option value="RJ">RJ</option><option value="MG">MG</option>
+            <option value="BA">BA</option><option value="CE">CE</option>
+            <option value="RS">RS</option><option value="PR">PR</option>
+            <option value="SC">SC</option><option value="GO">GO</option>
+            <option value="PA">PA</option><option value="MA">MA</option>
+            <option value="AM">AM</option><option value="ES">ES</option>
+            <option value="RN">RN</option><option value="AL">AL</option>
+            <option value="SE">SE</option><option value="PB">PB</option>
+            <option value="PI">PI</option><option value="RO">RO</option>
+            <option value="MT">MT</option><option value="MS">MS</option>
+            <option value="TO">TO</option><option value="AC">AC</option>
+            <option value="AP">AP</option><option value="RR">RR</option>
+            <option value="DF">DF</option>
+          </select>
+          <span class="form-error" id="locEstadoError"></span>
+        </div>
+        <div class="form-group">
+          <label for="locCep">CEP *</label>
+          <input class="input" type="text" id="locCep" name="cep"
+            placeholder="00000-000" maxlength="9" required/>
+          <span class="form-error" id="locCepError"></span>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn--secondary" id="btnBuscarCoordenadas">
+        📍 Obter coordenadas pelo endereço
+      </button>
+
+      <div class="coord-display hidden" id="coordDisplay">
+        <span class="badge badge--green">✅ Localização confirmada</span>
+        <span class="coord-text" id="coordText"></span>
+      </div>
+
+      <input type="hidden" id="locLat" name="lat"/>
+      <input type="hidden" id="locLng" name="lng"/>
+    </div>
+
+    <!-- ══ PASSO 4 — Revisão ══════════════════════════════ -->
+    <div class="form-step hidden" id="step4">
+      <h2 class="form-step__title">Revisar e publicar</h2>
+      <p class="form-step__sub">Confirme os dados antes de publicar.</p>
+
+      <div class="revisao-grid" id="revisaoGrid">
+        <!-- Preenchido pelo JS -->
+      </div>
+
+      <div class="revisao-aviso">
+        ⚠️ Ao publicar, a doação ficará visível no mapa público e receptores poderão reservá-la.
+      </div>
+    </div>
+
+    <!-- Navegação do form -->
+    <div class="form-nav">
+      <button type="button" class="btn btn--ghost" id="btnVoltar" style="display:none">← Voltar</button>
+      <div style="flex:1"></div>
+      <button type="button" class="btn btn--primary" id="btnAvancar">Próximo →</button>
+      <button type="button" class="btn btn--primary hidden" id="btnPublicar">
+        🌱 Publicar Doação
+      </button>
+    </div>
+  </div>
+</main>
+
+<div id="toastContainer"></div>
+
+<script type="module" src="js/init.js"></script>
+<script type="module" src="js/utils.js"></script>
+<script type="module" src="js/nova-doacao.js"></script>
+</body>
+</html>

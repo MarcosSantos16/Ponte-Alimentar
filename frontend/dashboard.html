@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: wss: data: blob:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; img-src 'self' data: https: blob:; connect-src 'self' http://localhost:5000 https: wss:;"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title>Ponte Alimentar — Painel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/dashboard.css"/>
+</head>
+<body>
+
+<div class="page-loading" id="pageLoading"><div class="spinner spinner--lg"></div></div>
+
+<!-- Nav injetada pelo init.js -->
+
+<main class="dash-layout container" id="dashMain">
+  <!-- Sidebar -->
+  <aside class="dash-sidebar">
+    <div class="dash-user" id="dashUser">
+      <div class="skeleton" style="width:56px;height:56px;border-radius:50%;"></div>
+      <div style="display:flex;flex-direction:column;gap:.4rem;flex:1">
+        <div class="skeleton skel-line skel-line--lg"></div>
+        <div class="skeleton skel-line skel-line--md"></div>
+      </div>
+    </div>
+
+    <nav class="dash-nav" aria-label="Navegação do painel">
+      <a href="#visao-geral"    class="dash-nav__item active" data-section="visao-geral">   📊 Visão Geral</a>
+      <a href="#minhas-doacoes" class="dash-nav__item" data-section="minhas-doacoes">       🍽️ Minhas Doações</a>
+      <a href="#reservas"       class="dash-nav__item" data-section="reservas">             🔒 Reservas</a>
+      <a href="#historico"      class="dash-nav__item" data-section="historico">            📋 Histórico</a>
+    </nav>
+
+    <div class="dash-sidebar__actions">
+      <a href="/nova-doacao.html" class="btn btn--primary btn--full" id="btnNovaDoacaoSidebar">
+        + Nova Doação
+      </a>
+      <a href="/mapa.html" class="btn btn--ghost btn--full">Ver Mapa</a>
+    </div>
+  </aside>
+
+  <!-- Conteúdo principal -->
+  <div class="dash-content">
+
+    <!-- ══ Visão Geral ════════════════════════════════════ -->
+    <section class="dash-section active" id="secVisaoGeral" aria-labelledby="titleVisao">
+      <div class="dash-section__header">
+        <div>
+          <h2 class="display-3" id="titleVisao">Visão Geral</h2>
+          <p id="dashGreeting" style="color:var(--c-muted);margin-top:.35rem"></p>
+        </div>
+        <a href="/nova-doacao.html" class="btn btn--primary">+ Nova Doação</a>
+      </div>
+
+      <!-- Cartões de estatísticas -->
+      <div class="stat-cards" id="statCards">
+        <div class="stat-card skeleton" style="height:110px;"></div>
+        <div class="stat-card skeleton" style="height:110px;"></div>
+        <div class="stat-card skeleton" style="height:110px;"></div>
+        <div class="stat-card skeleton" style="height:110px;"></div>
+      </div>
+
+      <!-- Atividade recente -->
+      <div class="dash-card">
+        <div class="dash-card__header">
+          <h3 class="title">Atividade Recente</h3>
+          <a href="#" class="dash-card__link" data-section="historico">Ver tudo</a>
+        </div>
+        <div class="dash-card__body" id="atividadeRecente">
+          <div class="activity-skeleton">
+            <div class="skeleton skel-line skel-line--lg"></div>
+            <div class="skeleton skel-line skel-line--md"></div>
+            <div class="skeleton skel-line skel-line--sm"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Minhas Doações ═════════════════════════════════ -->
+    <section class="dash-section hidden" id="secMinhasDoacoes" aria-labelledby="titleDoacoes">
+      <div class="dash-section__header">
+        <h2 class="display-3" id="titleDoacoes">Minhas Doações</h2>
+        <a href="/nova-doacao.html" class="btn btn--primary">+ Nova Doação</a>
+      </div>
+
+      <!-- Filtro de status -->
+      <div class="filter-chips" id="filterStatus" style="margin-bottom:var(--sp-6)">
+        <button class="chip active" data-status="todos">Todas</button>
+        <button class="chip" data-status="disponivel">✅ Disponíveis</button>
+        <button class="chip" data-status="reservado">🔒 Reservadas</button>
+        <button class="chip" data-status="coletado">📦 Coletadas</button>
+        <button class="chip" data-status="expirado">⏰ Expiradas</button>
+      </div>
+
+      <div id="listMinhasDoacoes">
+        <div class="table-skeleton">
+          <div class="skeleton" style="height:52px;border-radius:var(--r);"></div>
+          <div class="skeleton" style="height:52px;border-radius:var(--r);"></div>
+          <div class="skeleton" style="height:52px;border-radius:var(--r);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Reservas ═══════════════════════════════════════ -->
+    <section class="dash-section hidden" id="secReservas" aria-labelledby="titleReservas">
+      <div class="dash-section__header">
+        <h2 class="display-3" id="titleReservas">Reservas</h2>
+        <a href="/mapa.html" class="btn btn--outline">Buscar Doações</a>
+      </div>
+      <div id="listReservas">
+        <div class="table-skeleton">
+          <div class="skeleton" style="height:52px;border-radius:var(--r);"></div>
+          <div class="skeleton" style="height:52px;border-radius:var(--r);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ Histórico ══════════════════════════════════════ -->
+    <section class="dash-section hidden" id="secHistorico" aria-labelledby="titleHistorico">
+      <div class="dash-section__header">
+        <h2 class="display-3" id="titleHistorico">Histórico</h2>
+      </div>
+      <div id="listHistorico">
+        <div class="empty-state"><div class="emo">📋</div><h3>Nenhum histórico</h3><p>Ações realizadas aparecerão aqui.</p></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div id="toastContainer"></div>
+
+<script type="module" src="js/init.js"></script>
+<script type="module" src="js/utils.js"></script>
+<script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

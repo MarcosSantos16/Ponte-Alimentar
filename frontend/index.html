@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: wss: data: blob:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; img-src 'self' data: https: blob:; connect-src 'self' http://localhost:5000 https: wss:;"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title>Ponte Alimentar — Conectando quem tem a quem precisa</title>
+  <meta name="description" content="Plataforma de redistribuição de alimentos no Brasil."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+
+<!-- Loading overlay -->
+<div class="page-loading" id="pageLoading">
+  <div class="spinner spinner--lg"></div>
+</div>
+
+<!-- Nav injetada pelo init.js -->
+
+<!-- ══ HERO ════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__grain"></div>
+  <div class="hero__blobs">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__content anim-fade-up">
+      <div class="hero__eyebrow">
+        <span class="badge badge--orange">🇧🇷 Problema real</span>
+        <span class="hero__stat-inline">46 mil ton. desperdiçadas/dia</span>
+      </div>
+
+      <h1 class="display-1 hero__title">
+        Conectamos<br/>
+        <em class="hero__em">quem tem</em><br/>
+        a quem precisa.
+      </h1>
+
+      <p class="hero__sub anim-fade-up anim-delay-1">
+        Restaurantes, mercados e eventos doam o excedente.<br/>
+        ONGs e famílias recebem. Voluntários entregam.
+      </p>
+
+      <div class="hero__actions anim-fade-up anim-delay-2">
+        <a href="/auth.html?tab=cadastro" class="btn btn--primary btn--xl">
+          Quero Participar →
+        </a>
+        <a href="/mapa.html" class="btn btn--secondary btn--xl">
+          Ver Doações no Mapa
+        </a>
+      </div>
+    </div>
+
+    <div class="hero__visual anim-fade-up anim-delay-3">
+      <div class="hero__card-stack">
+        <div class="hcard hcard--1">
+          <div class="hcard__dot hcard__dot--green"></div>
+          <span class="hcard__label">Nova doação</span>
+          <strong class="hcard__value">🍛 25 marmitas</strong>
+          <span class="hcard__loc">📍 Recife, PE · agora</span>
+        </div>
+        <div class="hcard hcard--2">
+          <div class="hcard__dot hcard__dot--orange"></div>
+          <span class="hcard__label">Reservada</span>
+          <strong class="hcard__value">🥦 10kg legumes</strong>
+          <span class="hcard__loc">📍 Boa Viagem · 5min</span>
+        </div>
+        <div class="hcard hcard--3">
+          <span class="hcard__emoji">🎉</span>
+          <strong>347 famílias<br/>atendidas este mês</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Estatísticas -->
+  <div class="hero__stats container">
+    <div class="hstat">
+      <span class="hstat__num" data-target="1240" id="statKg">0</span>
+      <span class="hstat__unit">kg</span>
+      <span class="hstat__label">doados</span>
+    </div>
+    <div class="hstat__sep"></div>
+    <div class="hstat">
+      <span class="hstat__num" data-target="347" id="statFamilias">0</span>
+      <span class="hstat__unit">famílias</span>
+      <span class="hstat__label">atendidas</span>
+    </div>
+    <div class="hstat__sep"></div>
+    <div class="hstat">
+      <span class="hstat__num" data-target="89" id="statDoadores">0</span>
+      <span class="hstat__unit">doadores</span>
+      <span class="hstat__label">ativos</span>
+    </div>
+    <div class="hstat__sep"></div>
+    <div class="hstat">
+      <span class="hstat__num" data-target="12" id="statCidades">0</span>
+      <span class="hstat__unit">cidades</span>
+      <span class="hstat__label">cobertas</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ COMO FUNCIONA ════════════════════════════════════════ -->
+<section class="section" id="como-funciona">
+  <div class="container">
+    <div class="sec-header">
+      <span class="label" style="color:var(--c-green)">Simples assim</span>
+      <h2 class="display-2">Como funciona</h2>
+      <p class="sec-sub">Três atores, quatro passos, impacto real.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card anim-fade-up">
+        <div class="step-card__num">01</div>
+        <div class="step-card__icon">🏪</div>
+        <h3>Doador cadastra</h3>
+        <p>Restaurante, mercado ou pessoa registra o alimento excedente com localização e prazo.</p>
+        <span class="step-card__role">Para doadores</span>
+      </div>
+      <div class="step-card anim-fade-up anim-delay-1">
+        <div class="step-card__num">02</div>
+        <div class="step-card__icon">🔔</div>
+        <h3>Receptor é notificado</h3>
+        <p>ONGs e famílias recebem alertas <strong>em tempo real</strong> de doações próximas.</p>
+        <span class="step-card__role">Para receptores</span>
+      </div>
+      <div class="step-card anim-fade-up anim-delay-2">
+        <div class="step-card__num">03</div>
+        <div class="step-card__icon">🛵</div>
+        <h3>Voluntário entrega</h3>
+        <p>Voluntários se oferecem para o transporte quando necessário.</p>
+        <span class="step-card__role">Para voluntários</span>
+      </div>
+      <div class="step-card anim-fade-up anim-delay-3">
+        <div class="step-card__num">04</div>
+        <div class="step-card__icon">📊</div>
+        <h3>Impacto registrado</h3>
+        <p>Cada doação vira uma estatística pública de impacto social.</p>
+        <span class="step-card__role">Para todos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA FINAL ═══════════════════════════════════════════ -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-block">
+      <div class="cta-block__text">
+        <h2 class="display-2">Comece agora.<br/>É gratuito.</h2>
+        <p>Junte-se a dezenas de doadores e receptores que já fazem a diferença em Recife e no Brasil.</p>
+      </div>
+      <div class="cta-block__actions">
+        <a href="/auth.html?tab=cadastro&papel=doador"    class="btn btn--primary btn--lg">Quero Doar →</a>
+        <a href="/auth.html?tab=cadastro&papel=receptor"  class="btn btn--outline btn--lg">Quero Receber →</a>
+        <a href="/auth.html?tab=cadastro&papel=voluntario"class="btn btn--ghost btn--lg">Quero Ajudar na Entrega</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ═══════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="nav-logo" style="margin-bottom:.5rem">🌱 Food<strong>Bridge</strong></span>
+      <p>Reduzindo o desperdício alimentar no Brasil.</p>
+    </div>
+    <nav class="footer__links" aria-label="Links do rodapé">
+      <a href="/mapa.html">Mapa</a>
+      <a href="/auth.html">Entrar</a>
+      <a href="#">Sobre</a>
+      <a href="#">Contato</a>
+    </nav>
+    <p class="footer__copy">© 2026 Ponte Alimentar. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<div id="toastContainer"></div>
+
+<script type="module" src="js/init.js"></script>
+<script type="module" src="js/utils.js"></script>
+<script type="module">
+  // Animações da landing page
+  document.addEventListener('DOMContentLoaded', () => {
+    // Contadores ao entrar na viewport
+    const statsEl = document.querySelector('.hero__stats');
+    if (statsEl && window.Utils) {
+      const obs = new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) {
+          document.querySelectorAll('[data-target]').forEach((el) => {
+            Utils.animarContador(el, parseInt(el.dataset.target));
+          });
+          obs.disconnect();
+        }
+      }, { threshold: 0.5 });
+      obs.observe(statsEl);
+    }
+  });
+</script>
+</body>
+</html>

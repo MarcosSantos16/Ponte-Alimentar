@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: wss: data: blob:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; img-src 'self' data: https: blob:; connect-src 'self' http://localhost:5000 https: wss:;"/>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  
+  <title>Ponte Alimentar — Meu Perfil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/perfil.css"/>
+</head>
+<body>
+
+<div class="page-loading" id="pageLoading"><div class="spinner spinner--lg"></div></div>
+
+<main class="perfil-page container">
+
+  <!-- Cabeçalho do perfil -->
+  <div class="perfil-header card" id="perfilHeader">
+    <div class="skeleton" style="width:80px;height:80px;border-radius:50%"></div>
+    <div style="display:flex;flex-direction:column;gap:.5rem;flex:1;padding-top:.5rem">
+      <div class="skeleton skel-line skel-line--lg" style="height:20px"></div>
+      <div class="skeleton skel-line skel-line--md" style="height:16px"></div>
+    </div>
+  </div>
+
+  <div class="perfil-grid">
+
+    <!-- Coluna esquerda: editar perfil -->
+    <div class="perfil-col">
+      <div class="card">
+        <div class="card__header"><h2 class="title">Editar Perfil</h2></div>
+        <div class="card__body">
+          <form id="formPerfil" novalidate>
+            <div class="form-group">
+              <label for="perfNome">Nome completo</label>
+              <input class="input" type="text" id="perfNome" name="nome"
+                autocomplete="name" maxlength="100" required/>
+              <span class="form-error" id="perfNomeError"></span>
+            </div>
+            <div class="form-group">
+              <label for="perfEmail">E-mail</label>
+              <input class="input" type="email" id="perfEmail" name="email"
+                autocomplete="email" disabled style="background:var(--c-bg);cursor:not-allowed"/>
+              <span class="hint">O e-mail não pode ser alterado aqui.</span>
+            </div>
+            <div class="form-group">
+              <label for="perfTelefone">Telefone</label>
+              <input class="input" type="tel" id="perfTelefone" name="telefone"
+                autocomplete="tel" placeholder="(81) 99999-9999" maxlength="20"/>
+            </div>
+            <div class="form-group">
+              <label for="perfOrg">Organização (opcional)</label>
+              <input class="input" type="text" id="perfOrg" name="organizacao"
+                placeholder="Restaurante, ONG, etc." maxlength="150"/>
+            </div>
+            <div class="form-group">
+              <label for="perfPapel">Papel</label>
+              <input class="input" id="perfPapel" disabled style="background:var(--c-bg);cursor:not-allowed"/>
+              <span class="hint">Para mudar de papel, entre em contato com o suporte.</span>
+            </div>
+            <button type="submit" class="btn btn--primary" id="btnSalvarPerfil">
+              Salvar alterações
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Coluna direita: segurança + estatísticas -->
+    <div class="perfil-col">
+      <!-- Estatísticas -->
+      <div class="card" id="perfilStats">
+        <div class="card__header"><h2 class="title">Suas Estatísticas</h2></div>
+        <div class="card__body">
+          <div class="perf-stats">
+            <div class="perf-stat">
+              <span class="perf-stat__val" id="statDoacoes">—</span>
+              <span class="perf-stat__label">Doações criadas</span>
+            </div>
+            <div class="perf-stat">
+              <span class="perf-stat__val" id="statReservas">—</span>
+              <span class="perf-stat__label">Reservas feitas</span>
+            </div>
+            <div class="perf-stat">
+              <span class="perf-stat__val" id="statMembro">—</span>
+              <span class="perf-stat__label">Membro desde</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Segurança -->
+      <div class="card">
+        <div class="card__header"><h2 class="title">Segurança</h2></div>
+        <div class="card__body">
+          <div class="sec-item">
+            <div class="sec-item__info">
+              <strong>Senha</strong>
+              <span>Altere sua senha de acesso</span>
+            </div>
+            <button class="btn btn--ghost btn--sm" id="btnAlterarSenha">Alterar</button>
+          </div>
+          <div class="sec-item sec-item--danger">
+            <div class="sec-item__info">
+              <strong>Sessão ativa</strong>
+              <span id="sessaoInfo">Carregando...</span>
+            </div>
+            <button class="btn btn--ghost btn--sm" id="btnEncerrarSessao">Sair</button>
+          </div>
+        </div>
+        <div class="card__footer">
+          <p style="font-size:.8rem;color:var(--c-muted)">
+            🔒 Sua conta é protegida por autenticação Firebase com verificação de token a cada requisição.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<div id="toastContainer"></div>
+
+<script type="module" src="js/init.js"></script>
+<script type="module" src="js/utils.js"></script>
+<script type="module" src="js/perfil.js"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https: wss: data: blob:; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; font-src 'self' https: data:; img-src 'self' data: https: blob:; connect-src 'self' http://localhost:5000 https: wss:;"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ponte Alimentar — Mapa de Doações</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="css/global.css"/>
+  <link rel="stylesheet" href="css/mapa.css"/>
+</head>
+<body>
+
+<div class="page-loading" id="pageLoading"><div class="spinner spinner--lg"></div></div>
+
+<main class="mapa-page">
+  <aside class="mapa-sidebar" id="mapaSidebar">
+    <div class="sidebar-header">
+      <h1 class="display-3">Doações próximas</h1>
+      <p class="sidebar-sub">Encontre alimentos disponíveis na sua região agora.</p>
+    </div>
+
+    <div class="sidebar-search">
+      <div class="input-wrap">
+        <input class="input" type="text" id="buscaCidade" placeholder="Buscar por cidade..." maxlength="100"/>
+        <span class="input-icon">🔍</span>
+      </div>
+    </div>
+
+    <div class="sidebar-filters">
+      <span class="label" style="color:var(--c-muted)">Filtrar por tipo</span>
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-tipo="todos">Todos</button>
+        <button class="chip" data-tipo="refeicao_pronta">🍽️ Refeição</button>
+        <button class="chip" data-tipo="alimento_nao_perecivel">📦 Não perecível</button>
+        <button class="chip" data-tipo="fruta_legume">🥦 Fruta/Legume</button>
+        <button class="chip" data-tipo="padaria">🥖 Padaria</button>
+        <button class="chip" data-tipo="outro">📋 Outro</button>
+      </div>
+    </div>
+
+    <div class="sidebar-list" id="listaDoacoes">
+      <div class="empty-state" id="listaEmpty" style="display:none">
+        <div class="emo">📭</div>
+        <h3>Nenhuma doação</h3>
+        <p>Tente ampliar a área ou remover os filtros.</p>
+      </div>
+      <div id="listaItems"></div>
+    </div>
+  </aside>
+
+  <div class="mapa-main">
+    <div id="map"></div>
+
+    <div class="detalhe-panel card hidden" id="detalhePanel">
+      <button class="detalhe-close" id="detalheClose" aria-label="Fechar">✕</button>
+      <div id="detalhePanelContent"></div>
+    </div>
+
+    <button class="btn-minha-loc btn btn--secondary" id="btnMinhaLoc" title="Minha localização" aria-label="Ir para minha localização">
+      📍
+    </button>
+  </div>
+</main>
+
+<div id="toastContainer"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous"></script>
+<script src="js/utils.js"></script>
+<script src="js/mapa.js"></script>
+<script type="module" src="js/init.js"></script>
+</body>
+</html>

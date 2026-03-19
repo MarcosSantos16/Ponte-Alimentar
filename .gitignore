@@ -1,0 +1,19 @@
+# ── Segredos — NUNCA commitar ───────────────────────────────
+.env
+*.pem
+*.key
+serviceAccountKey.json
+firebase-adminsdk*.json
+
+# ── Node ─────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-error.log
+
+# ── Logs ─────────────────────────────────────────────────────
+logs/
+*.log
+
+# ── OS ───────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
