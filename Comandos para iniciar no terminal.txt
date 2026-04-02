@@ -1,7 +1,0 @@
-1° Passo: Abrir 2 terminais um para o front-end e outro para o back-end
-
-2° Passo: entre no terminal e entre na respectiva pasta exemplo: (cd front-end)
-
-3° Passo: Comando para rodar o Back-end: npm run dev
-
-4° Passo: Comando para rodar o Front-end: npx serve -l 3000 
