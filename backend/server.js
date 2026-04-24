@@ -46,7 +46,7 @@ const doacoesRoutes = require('./routes/doacoes');
 // ── Inicializações 
 const app = express();
 
-// ── Confiança em Proxy (Nginx, Heroku, Railway...) 
+
 // Necessário para req.ip retornar o IP real do cliente
 app.set('trust proxy', 1);
 

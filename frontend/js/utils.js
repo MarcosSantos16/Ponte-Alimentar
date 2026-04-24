@@ -99,7 +99,7 @@ const Utils = (() => {
     
     const BASE = window.location.hostname === 'localhost'
   ? 'http://localhost:5000/api'
-  : '/api';
+  : 'https://ponte-alimentar.onrender.com/api';
 
     const token = async () => {
       const auth = window._fb?.auth;
